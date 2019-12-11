@@ -38,7 +38,7 @@ public class Element extends JComponent{
   public BufferedImage copyImage(BufferedImage coverImage){
     ColorModel colorModel = coverImage.getColorModel();
     boolean isAlphaPremultiplied = coverImage.isAlphaPremultiplied();
-    WritableRaster raster = coverImage.copyData(null);
+    WritableRaster raster = coverImage.copyData(coverImage.getRaster().createCompatibleWritableRaster());
     BufferedImage newImage = new BufferedImage(colorModel, raster, isAlphaPremultiplied, null);
     return newImage;
   }
@@ -53,15 +53,15 @@ public class Element extends JComponent{
     setBounds(x, y, size, size);
     setOpaque(true);
 
-    try {
-      img = ImageIO.read(new File(type.getLink()));
-      // img = getSprite(type.getX(), type.getY());
+    // try {
+      // img = ImageIO.read(new File(type.getLink()));
+      img = getSprite(type.getX(), type.getY());
       img3 = copyImage(img);
       img2 = copyImage(img);
       ro.filter(img2, img2);
-    } catch(IOException e){
-      e.printStackTrace();
-    }
+    // } catch(IOException e){
+      // e.printStackTrace();
+    // }
 
     addMouseListener(new MouseListener() {
       @Override
@@ -131,9 +131,10 @@ public class Element extends JComponent{
     return type;
   }
 
-  public BufferedImage getSprite(int x, int y){
+  public BufferedImage getSprite(int spritex, int spritey){
     if(Window.spriteSheet!=null){
-      return Window.spriteSheet.getSubimage(x*size, y*size, size, size);
+      System.out.println(spritex + " " + spritey);
+      return Window.spriteSheet.getSubimage(spritex, spritey, 128, 128);
     } else {
       return null;
     }
