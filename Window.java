@@ -14,7 +14,7 @@ public class Window {
   public static BufferedImage spriteSheet;
 
 
-  //List of all Recies
+  //List of all Recipes
   public static ElementType[][] Recipes = {
     {ElementType.HYDROGEN, ElementType.OXYGEN, ElementType.WATER},
     {ElementType.CARBON, ElementType.WATER, ElementType.CARBONWATER},
@@ -41,15 +41,16 @@ public class Window {
     }
 
     //Add Inital Elements
-    addElement(ElementType.OXYGEN, 0, 0);
-    addElement(ElementType.CARBON, 128, 0);
-    addElement(ElementType.HYDROGEN, 256, 0);
-    addElement(ElementType.OXYGEN, 384, 0);
-    addElement(ElementType.HYDROGEN, 0, 128);
-    addElement(ElementType.CARBON, 128, 128);
-    addElement(ElementType.CHLORINE, 256, 128);
-    addElement(ElementType.ALUMINUM, 384, 128);
-    addElement(ElementType.SODIUM, 0, 256);
+    addElement(ElementType.OXYGEN, 0, 0, false);
+    addElement(ElementType.CARBON, 128, 0, false);
+    addElement(ElementType.HYDROGEN, 256, 0, false);
+    addElement(ElementType.OXYGEN, 384, 0, false);
+    addElement(ElementType.HYDROGEN, 0, 128, false);
+    addElement(ElementType.CARBON, 128, 128, false);
+    addElement(ElementType.CHLORINE, 256, 128, false);
+    addElement(ElementType.ALUMINUM, 384, 128, false);
+    addElement(ElementType.SODIUM, 0, 256, false);
+    f.repaint();
 
   }
 
@@ -74,16 +75,18 @@ public class Window {
     if(recipe(e1.getType(), e2.getType())!=null){
       removeElement(e1);
       removeElement(e2);
-      addElement(recipe(e1.getType(), e2.getType()), e1.getX(), e2.getY());
+      addElement(recipe(e1.getType(), e2.getType()), e1.getX(), e2.getY(), true);
     }
   }
 
   //Creates new Element object
-  public static void addElement(ElementType type, int x, int y){
+  public static void addElement(ElementType type, int x, int y, boolean b){
     Element temp = new Element(type, x, y);
     ElementList.add(temp);
     f.add(temp);
-    f.repaint();
+    if(b){
+      f.repaint();
+    }
   }
 
   //Removes Element from JFrame and ElementList

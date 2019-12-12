@@ -128,7 +128,6 @@ public class Element extends JComponent{
 
   public BufferedImage getSprite(int spritex, int spritey){
     if(Window.spriteSheet!=null){
-      System.out.println(spritex + " " + spritey);
       return Window.spriteSheet.getSubimage(spritex, spritey, 128, 128);
     } else {
       return null;
