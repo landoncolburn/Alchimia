@@ -16,7 +16,7 @@ public class Element extends JComponent{
   private static final long serialVersionUID = 42l;
 
   private BufferedImage img,img2,img3;
-  private ElementType type; //Creates inital Element Type
+  private ElementType type;
 
   private RescaleOp ro = new RescaleOp(1.1f, 10, null);
 
