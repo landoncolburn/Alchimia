@@ -53,15 +53,10 @@ public class Element extends JComponent{
     setBounds(x, y, size, size);
     setOpaque(true);
 
-    // try {
-      // img = ImageIO.read(new File(type.getLink()));
-      img = getSprite(type.getX(), type.getY());
-      img3 = copyImage(img);
-      img2 = copyImage(img);
-      ro.filter(img2, img2);
-    // } catch(IOException e){
-      // e.printStackTrace();
-    // }
+    img = getSprite(type.getX(), type.getY());
+    img3 = copyImage(img);
+    img2 = copyImage(img);
+    ro.filter(img2, img2);
 
     addMouseListener(new MouseListener() {
       @Override
