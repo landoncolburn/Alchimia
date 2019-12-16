@@ -16,7 +16,18 @@ public enum ElementType{
   ORGANIC("Organic", 8, 0),
   SUGAR("Sugar", 5, 1),
   SILICON("Silicon", 2, 1),
-  SODA("Soda", 3, 1);
+  SODA("Soda", 3, 1),
+  CELL("Cell", 8, 1),
+  ORGANISM("Organism", 9, 1),
+  PHOSPHATE("Phosphate", 0, 2),
+  PHOSPHORUS("Phosphorus", 1, 2),
+  SILVER("Silver", 2, 2),
+  GOLD("Gold", 3, 2),
+  DNA("DNA", 4, 2),
+  CALCIUM("Calcium", 5, 2),
+  VERTABRATE("Vertabrate", 6, 2),
+  BONE("Bone", 7, 2);
+
 
   private final String name;
   private final int spriteX;

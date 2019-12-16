@@ -49,7 +49,7 @@ public class Window {
     addElement(ElementType.CARBON, 128, 128, false);
     addElement(ElementType.CHLORINE, 256, 128, false);
     addElement(ElementType.ALUMINUM, 384, 128, false);
-    addElement(ElementType.SODIUM, 0, 256, false);
+    addElement(ElementType.VERTABRATE, 0, 256, false);
     f.repaint();
 
   }
