@@ -3,13 +3,15 @@
   ©2019
 */
 
-import java.awt.*;
-import java.awt.event.*;
+import java.awt.Rectangle;
+import java.awt.Graphics2D;
+import java.awt.Graphics;
+import java.awt.Cursor;
+import java.awt.event.MouseListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseMotionListener;
 import java.awt.image.*;
-import javax.swing.*;
-import javax.swing.border.*;
-import java.io.*;
-import javax.imageio.*;
+import javax.swing.JComponent;
 
 public class Element extends JComponent{
 
@@ -61,8 +63,7 @@ public class Element extends JComponent{
     addMouseListener(new MouseListener() {
       @Override
       public void mouseClicked(MouseEvent e) {
-        if (e.getButton() == MouseEvent.BUTTON3)
-        {
+        if (e.getButton() == MouseEvent.BUTTON3){
             System.out.println(type.getName()+" X: " +x+" Y: "+y + " ScreenX: " +lx+" ScreenY: "+ly);
         }
       }
@@ -113,7 +114,7 @@ public class Element extends JComponent{
     });
   }
 
-  public Rectangle getBounds() {
+  public Rectangle getBounds(){
     Rectangle rect = new Rectangle(getX()+20, getY()+20, size-20, size-20);
     return rect;
   }
