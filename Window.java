@@ -16,6 +16,7 @@ public class Window {
   public static ArrayList<Element> ElementList = new ArrayList<Element>();
   public static BufferedImage spriteSheet;
   public static ToolTip tt = new ToolTip();
+  public static ScoreLabel scoreLabel = new ScoreLabel(0);
 
 
   //List of all Recipes
@@ -37,7 +38,9 @@ public class Window {
   };
 
   public static void main(String[] args){
+    //Initalize Tooltip
     f.add(tt);
+    f.add(scoreLabel);
 
     //Initalization of JFrame
     f.setLayout(null);
@@ -92,6 +95,7 @@ public class Window {
       removeElement(e1);
       removeElement(e2);
       addElement(recipe(e1.getType(), e2.getType()), e1.getX(), e2.getY(), true);
+      scoreLabel.addScore(10);
     }
   }
 

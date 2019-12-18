@@ -112,6 +112,7 @@ public class Element extends JComponent{
 
         setLocation(x + deltaX, y + deltaY);
 
+        //Sets tooltip location to cursor (possible refactor)
         Point p = new Point(e.getXOnScreen(), e.getYOnScreen());
         screenToFrame(p);
         Window.tt.setPos(p);
@@ -119,6 +120,7 @@ public class Element extends JComponent{
 
       @Override
       public void mouseMoved(MouseEvent e){
+        //Sets tooltip location to cursor (possible refactor)
         Point p = new Point(e.getXOnScreen(), e.getYOnScreen());
         screenToFrame(p);
         Window.tt.setPos(p);

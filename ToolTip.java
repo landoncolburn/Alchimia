@@ -23,7 +23,7 @@ public class ToolTip extends JLabel {
     setBackground(Color.BLACK);
     setBounds(0, 0, 100, 50);
     setOpaque(true);
-    setBorder(new EmptyBorder(0,10,0,5));
+    setBorder(new EmptyBorder(0,10,0,10));
     setLocation(100, 100);
   }
 
@@ -35,7 +35,7 @@ public class ToolTip extends JLabel {
 
   public void setTitle(String s){
     setText(s);
-    l = s.length() * 12;
+    l = 20+SwingUtilities.computeStringWidth(this.getFontMetrics(this.getFont()), s);
     setBounds(xPos, yPos, l, w);
   }
 
