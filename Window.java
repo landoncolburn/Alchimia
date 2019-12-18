@@ -31,7 +31,7 @@ public class Window {
     {ElementType.ORGANIC, ElementType.DNA, ElementType.CELL},
   };
 
-  public static void main(String[] args) {
+  public static void main(String[] args){
 
     //Initalization of JFrame
     f.setLayout(null);
@@ -41,7 +41,7 @@ public class Window {
 
     try{
       spriteSheet = ImageIO.read(new File("resources/spritesheet.png"));
-    } catch(IOException e){
+    }catch(IOException e){
       e.printStackTrace();
     }
 

@@ -45,7 +45,7 @@ public class Element extends JComponent{
     return newImage;
   }
 
-  public Element(ElementType type, int iX, int iY) {
+  public Element(ElementType type, int iX, int iY){
     this.type = type;
     this.x = iX;
     this.y = iY;
@@ -60,7 +60,7 @@ public class Element extends JComponent{
     img2 = copyImage(img);
     ro.filter(img2, img2);
 
-    addMouseListener(new MouseListener() {
+    addMouseListener(new MouseListener(){
       @Override
       public void mouseClicked(MouseEvent e) {
         if (e.getButton() == MouseEvent.BUTTON3){
@@ -69,7 +69,7 @@ public class Element extends JComponent{
       }
 
       @Override
-      public void mousePressed(MouseEvent e) {
+      public void mousePressed(MouseEvent e){
         screenX = e.getXOnScreen();
         screenY = e.getYOnScreen();
 
@@ -78,19 +78,19 @@ public class Element extends JComponent{
       }
 
       @Override
-      public void mouseReleased(MouseEvent e) {
+      public void mouseReleased(MouseEvent e){
         check();
       }
 
       @Override
-      public void mouseEntered(MouseEvent e) {
+      public void mouseEntered(MouseEvent e){
         setCursor(new Cursor(Cursor.HAND_CURSOR));
         img = img2;
         Window.redraw();
       }
 
       @Override
-      public void mouseExited(MouseEvent e) {
+      public void mouseExited(MouseEvent e){
         setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
         img = img3;
         Window.redraw();
@@ -99,7 +99,7 @@ public class Element extends JComponent{
 
     addMouseMotionListener(new MouseMotionListener() {
       @Override
-      public void mouseDragged(MouseEvent e) {
+      public void mouseDragged(MouseEvent e){
         cursorX = e.getXOnScreen();
         cursorY = e.getYOnScreen();
         int deltaX = cursorX - screenX;
@@ -109,7 +109,7 @@ public class Element extends JComponent{
       }
 
       @Override
-      public void mouseMoved(MouseEvent e) { }
+      public void mouseMoved(MouseEvent e){ }
 
     });
   }
