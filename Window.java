@@ -1,16 +1,21 @@
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
+import java.awt.Color;
 import java.io.File;
 import java.io.IOException;
 import javax.imageio.ImageIO;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
+import java.awt.BorderLayout;
 import java.util.ArrayList;
+import java.awt.event.*;
 
 public class Window {
 
   public static JFrame f = new JFrame("Alchimia");
   public static ArrayList<Element> ElementList = new ArrayList<Element>();
   public static BufferedImage spriteSheet;
+  public static ToolTip tt = new ToolTip();
 
 
   //List of all Recipes
@@ -32,12 +37,12 @@ public class Window {
   };
 
   public static void main(String[] args){
+    f.add(tt);
 
     //Initalization of JFrame
     f.setLayout(null);
     f.setSize(512, 512);
     f.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-    f.setVisible(true);
 
     try{
       spriteSheet = ImageIO.read(new File("resources/spritesheet.png"));
@@ -60,8 +65,9 @@ public class Window {
     addElement(ElementType.CARBON, 384, 256, false);
     addElement(ElementType.CARBON, 0, 384, false);
     addElement(ElementType.CALCIUM, 128, 384, false);
-    f.repaint();
 
+    f.repaint();
+    f.setVisible(true);
   }
 
   //Repaints the JFrame

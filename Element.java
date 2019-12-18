@@ -4,14 +4,17 @@
 */
 
 import java.awt.Rectangle;
+import java.awt.Point;
 import java.awt.Graphics2D;
 import java.awt.Graphics;
 import java.awt.Cursor;
+import java.awt.Component;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionListener;
 import java.awt.image.*;
 import javax.swing.JComponent;
+import javax.swing.SwingUtilities;
 
 public class Element extends JComponent{
 
@@ -51,7 +54,6 @@ public class Element extends JComponent{
     this.y = iY;
 
     setLocation(x, y);
-
     setBounds(x, y, size, size);
     setOpaque(true);
 
@@ -86,6 +88,8 @@ public class Element extends JComponent{
       public void mouseEntered(MouseEvent e){
         setCursor(new Cursor(Cursor.HAND_CURSOR));
         img = img2;
+        Window.tt.setVisible(true);
+        Window.tt.setTitle(type.getName());
         Window.redraw();
       }
 
@@ -93,6 +97,7 @@ public class Element extends JComponent{
       public void mouseExited(MouseEvent e){
         setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
         img = img3;
+        Window.tt.setVisible(false);
         Window.redraw();
       }
     });
@@ -106,10 +111,18 @@ public class Element extends JComponent{
         int deltaY = cursorY - screenY;
 
         setLocation(x + deltaX, y + deltaY);
+
+        Point p = new Point(e.getXOnScreen(), e.getYOnScreen());
+        screenToFrame(p);
+        Window.tt.setPos(p);
       }
 
       @Override
-      public void mouseMoved(MouseEvent e){ }
+      public void mouseMoved(MouseEvent e){
+        Point p = new Point(e.getXOnScreen(), e.getYOnScreen());
+        screenToFrame(p);
+        Window.tt.setPos(p);
+      }
 
     });
   }
@@ -125,6 +138,11 @@ public class Element extends JComponent{
 
   public ElementType getType(){
     return type;
+  }
+
+  public Point screenToFrame(Point tp){
+    SwingUtilities.convertPointFromScreen(tp, Window.f);
+    return tp;
   }
 
   public BufferedImage getSprite(int spritex, int spritey){
