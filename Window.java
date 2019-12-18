@@ -23,6 +23,12 @@ public class Window {
     {ElementType.CARBONWATER, ElementType.SALT, ElementType.TONIC},
     {ElementType.ORGANIC, ElementType.OXYGEN, ElementType.SUGAR},
     {ElementType.CARBONWATER, ElementType.SUGAR, ElementType.SODA},
+    {ElementType.PHOSPHORUS, ElementType.OXYGEN, ElementType.PHOSPHATE},
+    {ElementType.PHOSPHATE, ElementType.SUGAR, ElementType.DNA},
+    {ElementType.CELL, ElementType.DNA, ElementType.ORGANISM},
+    {ElementType.ORGANISM, ElementType.BONE, ElementType.VERTABRATE},
+    {ElementType.CALCIUM, ElementType.PHOSPHORUS, ElementType.BONE},
+    {ElementType.ORGANIC, ElementType.DNA, ElementType.CELL},
   };
 
   public static void main(String[] args) {
@@ -41,14 +47,19 @@ public class Window {
 
     //Add Inital Elements
     addElement(ElementType.OXYGEN, 0, 0, false);
-    addElement(ElementType.CARBON, 128, 0, false);
-    addElement(ElementType.HYDROGEN, 256, 0, false);
+    addElement(ElementType.OXYGEN, 128, 0, false);
+    addElement(ElementType.OXYGEN, 256, 0, false);
     addElement(ElementType.OXYGEN, 384, 0, false);
     addElement(ElementType.HYDROGEN, 0, 128, false);
-    addElement(ElementType.CARBON, 128, 128, false);
-    addElement(ElementType.CHLORINE, 256, 128, false);
-    addElement(ElementType.ALUMINUM, 384, 128, false);
-    addElement(ElementType.VERTABRATE, 0, 256, false);
+    addElement(ElementType.HYDROGEN, 128, 128, false);
+    addElement(ElementType.HYDROGEN, 256, 128, false);
+    addElement(ElementType.PHOSPHORUS, 384, 128, false);
+    addElement(ElementType.PHOSPHORUS, 0, 256, false);
+    addElement(ElementType.PHOSPHORUS, 128, 256, false);
+    addElement(ElementType.CARBON, 256, 256, false);
+    addElement(ElementType.CARBON, 384, 256, false);
+    addElement(ElementType.CARBON, 0, 384, false);
+    addElement(ElementType.CALCIUM, 128, 384, false);
     f.repaint();
 
   }
