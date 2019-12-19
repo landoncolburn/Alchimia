@@ -49,8 +49,7 @@ public class Window {
     f.setSize(512, 512);
     f.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
-    pop = new Popup("Welcome!", "Welcome to the Elements Game! Created by Landon Colburn in Dec 2019.");
-    f.add(pop);
+    f.add(new Popup("Elements Game","Drag elements together to make new substances. Try to collect the most energy you can!<br><br>(Hint: Hydrogen + Oxygen = Water)"));
 
     try{
       spriteSheet = ImageIO.read(new File("resources/spritesheet.png"));
