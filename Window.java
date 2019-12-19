@@ -54,20 +54,8 @@ public class Window {
     }
 
     //Add Inital Elements
-    addElement(ElementType.OXYGEN, 0, 0, false);
-    addElement(ElementType.OXYGEN, 128, 0, false);
-    addElement(ElementType.OXYGEN, 256, 0, false);
-    addElement(ElementType.OXYGEN, 384, 0, false);
-    addElement(ElementType.HYDROGEN, 0, 128, false);
-    addElement(ElementType.HYDROGEN, 128, 128, false);
+    addElement(ElementType.OXYGEN, 128, 128, false);
     addElement(ElementType.HYDROGEN, 256, 128, false);
-    addElement(ElementType.PHOSPHORUS, 384, 128, false);
-    addElement(ElementType.PHOSPHORUS, 0, 256, false);
-    addElement(ElementType.PHOSPHORUS, 128, 256, false);
-    addElement(ElementType.CARBON, 256, 256, false);
-    addElement(ElementType.CARBON, 384, 256, false);
-    addElement(ElementType.CARBON, 0, 384, false);
-    addElement(ElementType.CALCIUM, 128, 384, false);
 
     f.repaint();
     f.setVisible(true);
@@ -85,6 +73,7 @@ public class Window {
     for(int i = 0; i < ElementList.size(); i++){
       if(ElementList.get(i) != ele && ElementList.get(i).getBounds().intersects(r1)){
         merge(ele, ElementList.get(i));
+        break;
       }
     }
   }
@@ -94,8 +83,9 @@ public class Window {
     if(recipe(e1.getType(), e2.getType())!=null){
       removeElement(e1);
       removeElement(e2);
-      addElement(recipe(e1.getType(), e2.getType()), e1.getX(), e2.getY(), true);
-      scoreLabel.addScore(10);
+      ElementType temp = recipe(e1.getType(), e2.getType());
+      addElement(temp, e1.getX(), e2.getY(), true);
+      scoreLabel.addScore(temp.getRarity()*15);
     }
   }
 
