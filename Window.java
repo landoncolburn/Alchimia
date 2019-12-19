@@ -6,6 +6,7 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JPanel;
 import java.awt.BorderLayout;
 import java.util.ArrayList;
 import java.awt.event.*;
@@ -17,6 +18,7 @@ public class Window {
   public static BufferedImage spriteSheet;
   public static ToolTip tt = new ToolTip();
   public static ScoreLabel scoreLabel = new ScoreLabel(0);
+  public static Popup pop;
 
 
   //List of all Recipes
@@ -46,6 +48,9 @@ public class Window {
     f.setLayout(null);
     f.setSize(512, 512);
     f.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+
+    pop = new Popup("Welcome!", "Welcome to the Elements Game! Created by Landon Colburn in Dec 2019.");
+    f.add(pop);
 
     try{
       spriteSheet = ImageIO.read(new File("resources/spritesheet.png"));
