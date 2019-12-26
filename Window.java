@@ -11,6 +11,7 @@ import java.awt.BorderLayout;
 import java.util.ArrayList;
 import java.awt.event.*;
 import java.awt.Dimension;
+import java.awt.GraphicsDevice;
 
 public class Window {
 
@@ -20,7 +21,9 @@ public class Window {
   public static ToolTip tt = new ToolTip();
   public static ScoreLabel scoreLabel = new ScoreLabel(0);
   public static Popup pop;
-  public final static Dimension size = new Dimension(1264, 712);
+  public final static Dimension size = new Dimension(1000, 700);
+  public static GraphicsDevice myDevice;
+  public static Window win;
 
 
   //List of all Recipes
@@ -48,11 +51,18 @@ public class Window {
 
     //Initalization of JFrame
     f.setLayout(null);
-    f.setExtendedState(JFrame.MAXIMIZED_BOTH);
     f.setUndecorated(true);
-    // f.setSize((int)Window.size.getWidth(), (int)Window.size.getHeight());
     f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     f.setResizable(false);
+    f.setSize(size);
+
+    f.addKeyListener(new KeyAdapter(){
+      public void keyPressed(KeyEvent ke){
+        if(ke.getKeyCode() == KeyEvent.VK_ESCAPE){
+          System.exit(0);
+        }
+      }
+    });
 
     f.add(new Popup("Elements Game","Drag elements together to make new substances. Try to collect the most energy you can!<br><br>(Hint: Hydrogen + Oxygen = Water)"));
 
