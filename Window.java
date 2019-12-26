@@ -48,7 +48,7 @@ public class Window {
     //Initalization of JFrame
     f.setLayout(null);
     f.setSize(512, 512);
-    f.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+    f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
     f.add(new Popup("Elements Game","Drag elements together to make new substances. Try to collect the most energy you can!<br><br>(Hint: Hydrogen + Oxygen = Water)"));
 
@@ -59,10 +59,16 @@ public class Window {
     }
 
     //Add Inital Elements
-    addElement(ElementType.OXYGEN, 128, 128, false);
-    addElement(ElementType.HYDROGEN, 256, 128, false);
-    Producer pro = new Producer(ElementType.PHYDRO, 384, 0, ElementType.HYDROGEN);
-    f.add(pro);
+    Producer proHydro = new Producer(ElementType.PHYDRO, 384, 0, ElementType.HYDROGEN);
+    Producer proNitro = new Producer(ElementType.PNITRO, 384, 128, ElementType.NITROGEN);
+    Producer proOxy = new Producer(ElementType.POXY, 384, 256, ElementType.OXYGEN);
+    Producer proCarbon = new Producer(ElementType.PCARBON, 384, 384, ElementType.CARBON);
+    Producer proHelium = new Producer(ElementType.PHELIUM, 0, 0, ElementType.HELIUM);
+    f.add(proHydro);
+    f.add(proNitro);
+    f.add(proOxy);
+    f.add(proCarbon);
+    f.add(proHelium);
 
     f.repaint();
     f.setVisible(true);

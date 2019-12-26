@@ -30,7 +30,7 @@ public class ToolTip extends JLabel {
   public void setPos(Point p){
     xPos = p.x;
     yPos = p.y;
-    if(xPos+l<=530){
+    if(xPos+l<=512){
       setLocation(xPos, yPos);
     } else {
       setLocation(xPos-l, yPos);

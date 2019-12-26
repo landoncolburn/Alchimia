@@ -16,7 +16,6 @@ public class Producer extends Element{
   private ElementType product;
   private static Random rnd = new Random();
   private Timer timer = new Timer();
-  private boolean active = true;
 
   public Producer(ElementType type, int iX, int iY, ElementType product){
     super(type, iX, iY);
@@ -25,11 +24,11 @@ public class Producer extends Element{
     timer.scheduleAtFixedRate(new TimerTask() {
     @Override
       public void run() {
-          if(Window.ElementList.size()<11 && active){
+          if(Window.ElementList.size()<19 && active){
             produce();
           }
       }
-    }, 0, 15000);   // 1000 Millisecond = 1 second
+    }, 0, 30000);   // 1000 Millisecond = 1 second
   }
 
   public void produce() {

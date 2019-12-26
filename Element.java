@@ -23,7 +23,7 @@ public class Element extends JComponent{
   private BufferedImage img,img2,img3,img4;
   private ElementType type;
 
-  private boolean active = true;
+  protected boolean active = true;
 
   private RescaleOp light = new RescaleOp(1, 20, null);
   private RescaleOp dark = new RescaleOp(1, -70, null);
@@ -71,7 +71,7 @@ public class Element extends JComponent{
       @Override
       public void mouseClicked(MouseEvent e) {
         if (e.getButton() == MouseEvent.BUTTON3){
-          System.out.println(type.getName()+" X: " +x+" Y: "+y + " ScreenX: " +lx+" ScreenY: "+ly);
+          System.out.println(type.getName()+" X: " +x+" Y: "+y + " ScreenX: " +lx+" ScreenY: "+ly+" Active:"+active);
         } else if(e.getButton() == MouseEvent.BUTTON1){
           if(active){
             deactivate();
