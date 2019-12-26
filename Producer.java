@@ -32,7 +32,7 @@ public class Producer extends Element{
   }
 
   public void produce() {
-    Window.addElement(product, rnd.nextInt(400), rnd.nextInt(400), true);
+    Window.addElement(product, rnd.nextInt((int)Window.size.getWidth()-128), rnd.nextInt((int)Window.size.getHeight()-128), true);
   }
 
   @Override

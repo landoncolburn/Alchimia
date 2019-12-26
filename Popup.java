@@ -28,8 +28,8 @@ public class Popup extends JPanel {
     heading = titleMsg;
     text = textMsg;
 
-    width = Window.f.getWidth();
-    height = Window.f.getHeight();
+    width = (int)Window.size.getWidth();
+    height = (int)Window.size.getHeight();
 
     System.out.println(width);
 
@@ -37,7 +37,7 @@ public class Popup extends JPanel {
 
     setOpaque(true);
     setBackground(Color.BLACK);
-    setBounds(pad, pad, height-2*pad, width-2*pad);
+    setBounds(pad, pad, width-2*pad, height-2*pad);
     setBorder(new EmptyBorder(30,30,30,30));
 
     JLabel title = new JLabel(heading, SwingConstants.CENTER);

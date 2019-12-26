@@ -10,7 +10,7 @@ import javax.swing.JPanel;
 import java.awt.BorderLayout;
 import java.util.ArrayList;
 import java.awt.event.*;
-import java.net.http.*;
+import java.awt.Dimension;
 
 public class Window {
 
@@ -20,6 +20,7 @@ public class Window {
   public static ToolTip tt = new ToolTip();
   public static ScoreLabel scoreLabel = new ScoreLabel(0);
   public static Popup pop;
+  public final static Dimension size = new Dimension(1264, 712);
 
 
   //List of all Recipes
@@ -47,8 +48,11 @@ public class Window {
 
     //Initalization of JFrame
     f.setLayout(null);
-    f.setSize(512, 512);
+    f.setExtendedState(JFrame.MAXIMIZED_BOTH);
+    f.setUndecorated(true);
+    // f.setSize((int)Window.size.getWidth(), (int)Window.size.getHeight());
     f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    f.setResizable(false);
 
     f.add(new Popup("Elements Game","Drag elements together to make new substances. Try to collect the most energy you can!<br><br>(Hint: Hydrogen + Oxygen = Water)"));
 
@@ -59,11 +63,11 @@ public class Window {
     }
 
     //Add Inital Elements
-    Producer proHydro = new Producer(ElementType.PHYDRO, 384, 0, ElementType.HYDROGEN);
-    Producer proNitro = new Producer(ElementType.PNITRO, 384, 128, ElementType.NITROGEN);
-    Producer proOxy = new Producer(ElementType.POXY, 384, 256, ElementType.OXYGEN);
-    Producer proCarbon = new Producer(ElementType.PCARBON, 384, 384, ElementType.CARBON);
-    Producer proHelium = new Producer(ElementType.PHELIUM, 0, 0, ElementType.HELIUM);
+    Producer proHydro = new Producer(ElementType.PHYDRO, (int)Window.size.getWidth()-128, 0, ElementType.HYDROGEN);
+    Producer proNitro = new Producer(ElementType.PNITRO, (int)Window.size.getWidth()-128, 128, ElementType.NITROGEN);
+    Producer proOxy = new Producer(ElementType.POXY, (int)Window.size.getWidth()-128, 256, ElementType.OXYGEN);
+    Producer proCarbon = new Producer(ElementType.PCARBON, (int)Window.size.getWidth()-128, 384, ElementType.CARBON);
+    Producer proHelium = new Producer(ElementType.PHELIUM, (int)Window.size.getWidth()-128, 512, ElementType.HELIUM);
     f.add(proHydro);
     f.add(proNitro);
     f.add(proOxy);
