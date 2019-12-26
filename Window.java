@@ -10,6 +10,7 @@ import javax.swing.JPanel;
 import java.awt.BorderLayout;
 import java.util.ArrayList;
 import java.awt.event.*;
+import java.net.http.*;
 
 public class Window {
 
@@ -60,6 +61,8 @@ public class Window {
     //Add Inital Elements
     addElement(ElementType.OXYGEN, 128, 128, false);
     addElement(ElementType.HYDROGEN, 256, 128, false);
+    Producer pro = new Producer(ElementType.PHYDRO, 384, 0, ElementType.HYDROGEN);
+    f.add(pro);
 
     f.repaint();
     f.setVisible(true);
@@ -90,6 +93,7 @@ public class Window {
       ElementType temp = recipe(e1.getType(), e2.getType());
       addElement(temp, e1.getX(), e2.getY(), true);
       scoreLabel.addScore(temp.getRarity()*15);
+      tt.setTitle(temp.getName());
     }
   }
 

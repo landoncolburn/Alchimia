@@ -37,7 +37,14 @@ public enum ElementType{
   ORGANISM("Organism", 9, 1, 4),
 
   //Legendary
-  VERTABRATE("Vertabrate", 6, 2, 4);
+  VERTABRATE("Vertabrate", 6, 2, 4),
+
+  //Producers
+  PCARBON("Carbon Factory", 9, 2, 0),
+  PHYDRO("Hydrogen Mine", 8, 2, 0),
+  POXY("Oxygen Shrine", 0, 3, 0),
+  PNITRO("Nitrogen-erator", 2, 3, 0),
+  PHELIUM("Helium Pump", 1, 3, 0);
 
 
   private final String name;

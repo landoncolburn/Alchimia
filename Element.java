@@ -20,10 +20,13 @@ public class Element extends JComponent{
 
   private static final long serialVersionUID = 42l;
 
-  private BufferedImage img,img2,img3;
+  private BufferedImage img,img2,img3,img4;
   private ElementType type;
 
-  private RescaleOp ro = new RescaleOp(1.1f, 10, null);
+  private boolean active = true;
+
+  private RescaleOp light = new RescaleOp(1, 20, null);
+  private RescaleOp dark = new RescaleOp(1, -70, null);
 
   private int screenX = 0;
   private int screenY = 0;
@@ -57,16 +60,24 @@ public class Element extends JComponent{
     setBounds(x, y, size, size);
     setOpaque(true);
 
-    img = getSprite(type.getX(), type.getY());
-    img3 = copyImage(img);
-    img2 = copyImage(img);
-    ro.filter(img2, img2);
+    img = getSprite(type.getX(), type.getY()); //Active Image
+    img2 = copyImage(img); //Light Image
+    img3 = copyImage(img); //Dark Image
+    img4 = copyImage(img); //Reset Image
+    light.filter(img2, img2);
+    dark.filter(img3, img3);
 
     addMouseListener(new MouseListener(){
       @Override
       public void mouseClicked(MouseEvent e) {
         if (e.getButton() == MouseEvent.BUTTON3){
-            System.out.println(type.getName()+" X: " +x+" Y: "+y + " ScreenX: " +lx+" ScreenY: "+ly);
+          System.out.println(type.getName()+" X: " +x+" Y: "+y + " ScreenX: " +lx+" ScreenY: "+ly);
+        } else if(e.getButton() == MouseEvent.BUTTON1){
+          if(active){
+            deactivate();
+          } else {
+            activate();
+          }
         }
       }
 
@@ -86,36 +97,53 @@ public class Element extends JComponent{
 
       @Override
       public void mouseEntered(MouseEvent e){
-        setCursor(new Cursor(Cursor.HAND_CURSOR));
-        img = img2;
-        Window.tt.setVisible(true);
-        Window.tt.setTitle(type.getName());
-        Window.redraw();
+        if(active){
+          setCursor(new Cursor(Cursor.HAND_CURSOR));
+          img = img2;
+          Window.tt.setVisible(true);
+          Window.tt.setTitle(type.getName());
+          Window.redraw();
+        } else {
+          setCursor(new Cursor(Cursor.HAND_CURSOR));
+          img = img3;
+          Window.tt.setVisible(true);
+          Window.tt.setTitle(type.getName() + " (inactive)");
+          Window.redraw();
+        }
       }
 
       @Override
       public void mouseExited(MouseEvent e){
-        setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
-        img = img3;
-        Window.tt.setVisible(false);
-        Window.redraw();
+        if(active){
+          setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+          img = img4;
+          Window.tt.setVisible(false);
+          Window.redraw();
+        } else {
+          setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+          img = img3;
+          Window.tt.setVisible(false);
+          Window.redraw();
+        }
       }
     });
 
     addMouseMotionListener(new MouseMotionListener() {
       @Override
       public void mouseDragged(MouseEvent e){
-        cursorX = e.getXOnScreen();
-        cursorY = e.getYOnScreen();
-        int deltaX = cursorX - screenX;
-        int deltaY = cursorY - screenY;
+        if(canMove()){
+          cursorX = e.getXOnScreen();
+          cursorY = e.getYOnScreen();
+          int deltaX = cursorX - screenX;
+          int deltaY = cursorY - screenY;
 
-        setLocation(x + deltaX, y + deltaY);
+          setLocation(x + deltaX, y + deltaY);
 
-        //Sets tooltip location to cursor (possible refactor)
-        Point p = new Point(e.getXOnScreen(), e.getYOnScreen());
-        screenToFrame(p);
-        Window.tt.setPos(p);
+          //Sets tooltip location to cursor (possible refactor)
+          Point p = new Point(e.getXOnScreen(), e.getYOnScreen());
+          screenToFrame(p);
+          Window.tt.setPos(p);
+        }
       }
 
       @Override
@@ -142,6 +170,20 @@ public class Element extends JComponent{
     return type;
   }
 
+  public void deactivate(){
+    active = false;
+    img = img3;
+    Window.redraw();
+    Window.tt.setTitle(type.getName() + " (inactive)");
+  }
+
+  public void activate(){
+    active = true;
+    img = img4;
+    Window.redraw();
+    Window.tt.setTitle(type.getName());
+  }
+
   public Point screenToFrame(Point tp){
     SwingUtilities.convertPointFromScreen(tp, Window.f);
     return tp;
@@ -153,6 +195,10 @@ public class Element extends JComponent{
     } else {
       return null;
     }
+  }
+
+  public boolean canMove(){
+    return true;
   }
 
 }
