@@ -7,6 +7,7 @@ import javax.imageio.ImageIO;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JTextField;
 import java.awt.BorderLayout;
 import java.util.ArrayList;
 import java.awt.event.*;
@@ -24,30 +25,39 @@ public class Window {
   public final static Dimension size = new Dimension(1000, 700);
   public static GraphicsDevice myDevice;
   public static Window win;
+  public static CommandPrompt cp = new CommandPrompt();
 
 
   //List of all Recipes
   public static ElementType[][] Recipes = {
+    //Uncommon
     {ElementType.HYDROGEN, ElementType.OXYGEN, ElementType.WATER},
-    {ElementType.CARBON, ElementType.WATER, ElementType.CARBONWATER},
-    {ElementType.CARBON, ElementType.HYDROGEN, ElementType.ORGANIC},
     {ElementType.HYDROGEN, ElementType.NITROGEN, ElementType.AMMONIA},
     {ElementType.SODIUM, ElementType.CHLORINE, ElementType.SALT},
-    {ElementType.CARBONWATER, ElementType.SALT, ElementType.TONIC},
-    {ElementType.ORGANIC, ElementType.OXYGEN, ElementType.SUGAR},
-    {ElementType.CARBONWATER, ElementType.SUGAR, ElementType.SODA},
+    {ElementType.CARBON, ElementType.HYDROGEN, ElementType.ORGANIC},
     {ElementType.PHOSPHORUS, ElementType.OXYGEN, ElementType.PHOSPHATE},
-    {ElementType.PHOSPHATE, ElementType.SUGAR, ElementType.DNA},
-    {ElementType.CELL, ElementType.DNA, ElementType.ORGANISM},
-    {ElementType.ORGANISM, ElementType.BONE, ElementType.VERTABRATE},
-    {ElementType.CALCIUM, ElementType.PHOSPHORUS, ElementType.BONE},
+
+    //Rare
+    {ElementType.CARBON, ElementType.WATER, ElementType.CARBONWATER},
+    {ElementType.ORGANIC, ElementType.OXYGEN, ElementType.SUGAR},
     {ElementType.ORGANIC, ElementType.DNA, ElementType.CELL},
+    {ElementType.PHOSPHATE, ElementType.SUGAR, ElementType.DNA},
+    {ElementType.CALCIUM, ElementType.PHOSPHORUS, ElementType.BONE},
+
+    //Ultra Rare
+    {ElementType.CARBONWATER, ElementType.SALT, ElementType.TONIC},
+    {ElementType.CARBONWATER, ElementType.SUGAR, ElementType.SODA},
+    {ElementType.CELL, ElementType.DNA, ElementType.ORGANISM},
+
+    //Legendary
+    {ElementType.ORGANISM, ElementType.BONE, ElementType.VERTABRATE},
   };
 
   public static void main(String[] args){
     //Initalize Tooltip
     f.add(tt);
     f.add(scoreLabel);
+    f.add(cp);
 
     //Initalization of JFrame
     f.setLayout(null);
@@ -56,10 +66,14 @@ public class Window {
     f.setResizable(false);
     f.setSize(size);
 
+    cp.hideCP();
+
     f.addKeyListener(new KeyAdapter(){
       public void keyPressed(KeyEvent ke){
         if(ke.getKeyCode() == KeyEvent.VK_ESCAPE){
           System.exit(0);
+        } else if(ke.getKeyCode() == 47){
+          cp.showCP();
         }
       }
     });
@@ -113,7 +127,7 @@ public class Window {
       ElementType temp = recipe(e1.getType(), e2.getType());
       addElement(temp, e1.getX(), e2.getY(), true);
       scoreLabel.addScore(temp.getRarity()*15);
-      tt.setTitle(temp.getName());
+      tt.setTitle(temp.getName(), temp.getRarity());
     }
   }
 

@@ -31,8 +31,6 @@ public class Popup extends JPanel {
     width = (int)Window.size.getWidth();
     height = (int)Window.size.getHeight();
 
-    System.out.println(width);
-
     setLayout(new BorderLayout());
 
     setOpaque(true);

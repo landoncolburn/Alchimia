@@ -16,6 +16,7 @@ public enum ElementType{
   SILVER("Silver", 2, 2, 1),
   GOLD("Gold", 3, 2, 1),
   CALCIUM("Calcium", 5, 2, 1),
+  LITHIUM("Lithium", 0, 0, 1),
 
   //Uncommon
   WATER("Water", 7, 1, 2),
@@ -37,7 +38,7 @@ public enum ElementType{
   ORGANISM("Organism", 9, 1, 4),
 
   //Legendary
-  VERTABRATE("Vertabrate", 6, 2, 4),
+  VERTABRATE("Vertabrate", 6, 2, 5),
 
   //Producers
   PCARBON("Carbon Factory", 9, 2, 0),

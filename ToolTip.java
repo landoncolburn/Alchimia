@@ -38,6 +38,36 @@ public class ToolTip extends JLabel {
   }
 
   public void setTitle(String s){
+    setForeground(Color.WHITE);
+    setText(s);
+    l = 20+SwingUtilities.computeStringWidth(this.getFontMetrics(this.getFont()), s);
+    setBounds(xPos, yPos, l, w);
+  }
+
+  public void setTitle(String s, int color){
+    switch(color){
+      case 0:
+        setForeground(Color.WHITE);
+        break;
+      case 1:
+        setForeground(Color.LIGHT_GRAY);
+        break;
+      case 2:
+        setForeground(Color.PINK);
+        break;
+      case 3:
+        setForeground(Color.CYAN);
+        break;
+      case 4:
+        setForeground(Color.MAGENTA);
+        break;
+      case 5:
+        setForeground(Color.ORANGE);
+        break;
+      default:
+        setForeground(Color.WHITE);
+        break;
+    }
     setText(s);
     l = 20+SwingUtilities.computeStringWidth(this.getFontMetrics(this.getFont()), s);
     setBounds(xPos, yPos, l, w);

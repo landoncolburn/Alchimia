@@ -26,7 +26,7 @@ public class Element extends JComponent{
   protected boolean active = true;
 
   private RescaleOp light = new RescaleOp(1, 20, null);
-  private RescaleOp dark = new RescaleOp(1, -70, null);
+  private RescaleOp dark = new RescaleOp(1, -170, null);
 
   private int screenX = 0;
   private int screenY = 0;
@@ -101,13 +101,13 @@ public class Element extends JComponent{
           setCursor(new Cursor(Cursor.HAND_CURSOR));
           img = img2;
           Window.tt.setVisible(true);
-          Window.tt.setTitle(type.getName());
+          Window.tt.setTitle(type.getName(), type.getRarity());
           Window.redraw();
         } else {
           setCursor(new Cursor(Cursor.HAND_CURSOR));
           img = img3;
           Window.tt.setVisible(true);
-          Window.tt.setTitle(type.getName() + " (inactive)");
+          Window.tt.setTitle(type.getName() + " (inactive)", -1);
           Window.redraw();
         }
       }
@@ -174,14 +174,14 @@ public class Element extends JComponent{
     active = false;
     img = img3;
     Window.redraw();
-    Window.tt.setTitle(type.getName() + " (inactive)");
+    Window.tt.setTitle(type.getName() + " (inactive)", -1);
   }
 
   public void activate(){
     active = true;
     img = img4;
     Window.redraw();
-    Window.tt.setTitle(type.getName());
+    Window.tt.setTitle(type.getName(), type.getRarity());
   }
 
   public Point screenToFrame(Point tp){
