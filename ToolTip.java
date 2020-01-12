@@ -41,7 +41,8 @@ public class ToolTip extends JLabel {
     setForeground(Color.WHITE);
     setText(s);
     l = 20+SwingUtilities.computeStringWidth(this.getFontMetrics(this.getFont()), s);
-    setBounds(xPos, yPos, l, w);
+    setSize(l, w);
+    setPos(new Point(xPos, yPos));
   }
 
   public void setTitle(String s, int color){
@@ -70,7 +71,8 @@ public class ToolTip extends JLabel {
     }
     setText(s);
     l = 20+SwingUtilities.computeStringWidth(this.getFontMetrics(this.getFont()), s);
-    setBounds(xPos, yPos, l, w);
+    setSize(l, w);
+    setPos(new Point(xPos, yPos));
   }
 
   public void setTipVis(boolean b){

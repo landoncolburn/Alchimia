@@ -19,12 +19,12 @@ public class Window {
   public static JFrame f = new JFrame("Alchimia");
   public static ArrayList<Element> ElementList = new ArrayList<Element>();
   public static BufferedImage spriteSheet;
-  public static ToolTip tt = new ToolTip();
-  public static ScoreLabel scoreLabel = new ScoreLabel(0);
   public static Popup pop;
-  public final static Dimension size = new Dimension(1000, 700);
   public static GraphicsDevice myDevice;
   public static Window win;
+  public final static Dimension size = new Dimension(1000, 700);
+  public static ToolTip tt = new ToolTip();
+  public static ScoreLabel sl = new ScoreLabel(0);
   public static CommandPrompt cp = new CommandPrompt();
 
 
@@ -54,9 +54,9 @@ public class Window {
   };
 
   public static void main(String[] args){
-    //Initalize Tooltip
+    //Initalize GUI
     f.add(tt);
-    f.add(scoreLabel);
+    f.add(sl);
     f.add(cp);
 
     //Initalization of JFrame
@@ -86,7 +86,7 @@ public class Window {
       e.printStackTrace();
     }
 
-    //Add Inital Elements
+    //Add Inital Producers
     Producer proHydro = new Producer(ElementType.PHYDRO, (int)Window.size.getWidth()-128, 0, ElementType.HYDROGEN);
     Producer proNitro = new Producer(ElementType.PNITRO, (int)Window.size.getWidth()-128, 128, ElementType.NITROGEN);
     Producer proOxy = new Producer(ElementType.POXY, (int)Window.size.getWidth()-128, 256, ElementType.OXYGEN);
@@ -126,7 +126,7 @@ public class Window {
       removeElement(e2);
       ElementType temp = recipe(e1.getType(), e2.getType());
       addElement(temp, e1.getX(), e2.getY(), true);
-      scoreLabel.addScore(temp.getRarity()*15);
+      sl.addScore(temp.getRarity()*15);
       tt.setTitle(temp.getName(), temp.getRarity());
     }
   }
