@@ -72,7 +72,7 @@ public class Element extends JComponent{
       public void mouseClicked(MouseEvent e) {
         if (e.getButton() == MouseEvent.BUTTON3){
           System.out.println(type.getName()+" X: " +x+" Y: "+y + " ScreenX: " +lx+" ScreenY: "+ly+" Active:"+active);
-        } else if(e.getButton() == MouseEvent.BUTTON1){
+        } else if(e.getButton() == MouseEvent.BUTTON1 && !canMove()){
           if(active){
             deactivate();
           } else {
@@ -98,15 +98,13 @@ public class Element extends JComponent{
       @Override
       public void mouseEntered(MouseEvent e){
         if(active){
-          setCursor(new Cursor(Cursor.HAND_CURSOR));
           img = img2;
-          Window.tt.setVisible(true);
+          Window.tt.setTipVis(true);
           Window.tt.setTitle(type.getName(), type.getRarity());
           Window.redraw();
         } else {
-          setCursor(new Cursor(Cursor.HAND_CURSOR));
           img = img3;
-          Window.tt.setVisible(true);
+          Window.tt.setTipVis(true);
           Window.tt.setTitle(type.getName() + " (inactive)", -1);
           Window.redraw();
         }
@@ -115,14 +113,12 @@ public class Element extends JComponent{
       @Override
       public void mouseExited(MouseEvent e){
         if(active){
-          setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
           img = img4;
-          Window.tt.setVisible(false);
+          Window.tt.setTipVis(false);
           Window.redraw();
         } else {
-          setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
           img = img3;
-          Window.tt.setVisible(false);
+          Window.tt.setTipVis(false);
           Window.redraw();
         }
       }

@@ -1,6 +1,7 @@
 import javax.swing.JTextField;
 import java.awt.Color;
 import java.awt.event.*;
+import java.util.ArrayList;
 
 public class CommandPrompt extends JTextField{
 
@@ -46,8 +47,18 @@ public class CommandPrompt extends JTextField{
         Window.ElementList.removeIf((e) -> e.getType().equals(ElementType.valueOf(args[1])));
         Window.f.repaint();
         return true;
+      case "removeall":
+        Window.ElementList.forEach((e) -> {
+          Window.f.remove(e);
+        });
+        Window.ElementList.clear();
+        Window.f.repaint();
+        return true;
       case "list":
         Window.ElementList.forEach((e) -> System.out.println(e.getType()));
+        return true;
+      case "log":
+        System.out.println(args[1]);
         return true;
       default:
         return false;

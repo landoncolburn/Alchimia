@@ -73,4 +73,15 @@ public class ToolTip extends JLabel {
     setBounds(xPos, yPos, l, w);
   }
 
+  public void setTipVis(boolean b){
+    if(b){
+      setCursor(new Cursor(Cursor.HAND_CURSOR));
+      setVisible(true);
+    } else {
+      setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+      setVisible(false);
+    }
+    System.out.println(b);
+  }
+
 }
