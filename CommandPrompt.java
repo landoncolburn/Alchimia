@@ -31,13 +31,13 @@ public class CommandPrompt extends JTextField{
     String args[] = command.split("\\s");
     switch(args[0]){
       case "add":
-        try{
-          Window.addElement(ElementType.valueOf(args[1]), 100, 100, true);
-          return true;
-        }catch(IllegalArgumentException e){
-          System.out.println("Invalid Element");
-          return false;
+        for(int i = 0; i < ElementType.values().length; i++){
+          if(ElementType.valueOf(args[1]).equals(ElementType.values()[i])){
+            Window.addElement(ElementType.valueOf(args[1]), 100, 100, true);
+            return true;
+          }
         }
+        return false;
       case "remove":
         Window.ElementList.forEach((e) -> {
           if(e.getType().equals(ElementType.valueOf(args[1]))){

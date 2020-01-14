@@ -24,6 +24,9 @@ public enum ElementType{
   SALT("Salt", 1, 1, 2),
   ORGANIC("Organic", 8, 0, 2),
   PHOSPHATE("Phosphate", 0, 2, 2),
+  CARBONDIOXIDE("Carbon Dioxide", 3, 3, 2),
+  CYANIDE("Cyanide", 4, 3, 2),
+  NITRATE("Nitrate", 5, 3, 2),
 
   //Rare
   CARBONWATER("Carbonated Water", 3, 0, 3),

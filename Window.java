@@ -30,15 +30,20 @@ public class Window {
 
   //List of all Recipes
   public static ElementType[][] Recipes = {
-    //Uncommon
+    //Uncommon Essentials
     {ElementType.HYDROGEN, ElementType.OXYGEN, ElementType.WATER},
+    {ElementType.CARBON, ElementType.OXYGEN, ElementType.CARBONDIOXIDE},
+    {ElementType.CARBON, ElementType.NITROGEN, ElementType.CYANIDE},
+    {ElementType.NITROGEN, ElementType.OXYGEN, ElementType.NITRATE},
     {ElementType.HYDROGEN, ElementType.NITROGEN, ElementType.AMMONIA},
-    {ElementType.SODIUM, ElementType.CHLORINE, ElementType.SALT},
     {ElementType.CARBON, ElementType.HYDROGEN, ElementType.ORGANIC},
+
+    //Uncommon Regulars
+    {ElementType.SODIUM, ElementType.CHLORINE, ElementType.SALT},
     {ElementType.PHOSPHORUS, ElementType.OXYGEN, ElementType.PHOSPHATE},
 
     //Rare
-    {ElementType.CARBON, ElementType.WATER, ElementType.CARBONWATER},
+    {ElementType.CARBONDIOXIDE, ElementType.WATER, ElementType.CARBONWATER},
     {ElementType.ORGANIC, ElementType.OXYGEN, ElementType.SUGAR},
     {ElementType.ORGANIC, ElementType.DNA, ElementType.CELL},
     {ElementType.PHOSPHATE, ElementType.SUGAR, ElementType.DNA},
